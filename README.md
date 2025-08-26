@@ -24,7 +24,7 @@ Mention known constraints or what this project **doesn't** cover.
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 List all technologies, libraries, or frameworks used.
 
@@ -65,5 +65,3 @@ If you have suggestions or improvements, feel free to fork the repository and su
 ## License
 
 This project is licensed under the MIT License — see the [LICENSE](https://opensource.org/license/mit) file for details.
-
-> _Reminder: Replace this license with one that suits your project, such as Apache 2.0, GPL, BSD, etc., based on your intended use and distribution model._

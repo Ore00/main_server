@@ -1,0 +1,16 @@
+FROM node:18
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+RUN npm install
+
+ARG FRONTEND_PORT
+ENV FRONTEND_PORT=${FRONTEND_PORT}
+EXPOSE 80
+EXPOSE ${FRONTEND_PORT}
+CMD ["npm", "run", "start"]

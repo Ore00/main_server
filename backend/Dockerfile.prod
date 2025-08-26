@@ -1,0 +1,23 @@
+FROM node:18
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install --only=production
+
+COPY . .
+
+ARG BACKEND_PORT
+ARG DB_PORT
+ARG FRONTEND_PORT
+
+ENV BACKEND_PORT=${BACKEND_PORT}
+ENV FRONTEND_PORT=${FRONTEND_PORT}
+ENV DB_PORT=${DB_PORT}
+EXPOSE ${BACKEND_PORT}
+EXPOSE ${FRONTEND_PORT}
+EXPOSE ${DB_PORT}
+EXPOSE ${MAIL_SMTP_PORT}
+RUN mkdir -p /app/logs
+
+CMD ["npm", "run", "index.js"]

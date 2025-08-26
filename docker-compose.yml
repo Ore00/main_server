@@ -1,0 +1,45 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=${BACKEND_PORT}
+      - MONGO_URI=$MONGO_URI
+      - JWT_SECRET=$JWT_SECRET
+      - EMAIL_USER=$EMAIL_USER
+      - EMAIL_PASS=$EMAIL_PASS
+      - OPENAI_API_KEY=$OPENAI_API_KEY
+    ports:
+      - ${BACKEND_PORT}:${BACKEND_PORT}
+      - ${MAIL_SMTP_PORT}:${MAIL_SMTP_PORT}
+    #command: ./config/setup.sh
+
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - ${FRONTEND_PORT}:${FRONTEND_PORT}
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+  mongo:
+    image: mongo
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+      - MONGO_INITDB_DATABASE=${DB_DATABASE}
+    volumes:
+      - ms_mongo_data:/data/db
+      - ./backend/mongo-init.js:/docker-entrypoint-initdb.d/init-user.js:ro
+
+volumes:
+  ms_mongo_data: {}

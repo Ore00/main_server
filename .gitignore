@@ -1,0 +1,38 @@
+# application(s)
+backend/*
+frontend/*
+
+!backend/Dockerfile.dev
+!backend/Dockerfile.prod
+!backend/.env.example
+!backend/package.json
+!frontend/Dockerfile.dev
+!frontend/Dockerfile.prod
+!frontend/.env.example
+!frontend/package.json
+
+
+
+# node
+node_modules
+npm-debug.log
+.env
+logs
+
+# production
+build
+dist
+
+# IDE
+.vscode
+.DS_Store
+*.code-workspace
+
+# docker
+*.local
+*.production
+*.development
+docker-compose.override.yml
+
+# amplify
+*amplify.*
