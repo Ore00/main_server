@@ -3,6 +3,8 @@ FROM node AS build
 WORKDIR /app
 
 COPY package*.json ./
+ENV NPM_CONFIG_LEGACY_PEER_DEPS=true
+ENV NPM_CONFIG_STRICT_PEER_DEPS=false
 
 RUN npm install
 

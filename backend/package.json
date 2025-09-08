@@ -9,24 +9,52 @@
   ],
   "license": "BUSL-1.1",
   "author": "Linda McGraw",
-  "type": "commonjs",
   "main": "index.js",
+  "type": "module",
+  "imports": {
+    "#utils/*": "./utils/*",
+    "#models/*": "./models/*",
+    "#controllers/*": "./controllers/*",
+    "#config/*": "./config/*"
+  },
   "scripts": {
     "start": "node index.js",
-    "dev": "NODE_OPTIONS=--openssl-legacy-provider PORT=3000 nodemon index.js",
-    "test": "echo \"Error: need to setup tests\" && exit 1"
+    "dev": "nodemon index.js",
+    "test": "echo \"Starting Tests: \" && mocha",
+    "dev:setup": "node config/setup.sh",
+    "lint": "npx prettier . --write --ignore-unknown",
+    "seed": "node config/seeds/seed.js"
   },
   "dependencies": {
+    "@babel/register": "^7.28.3",
+    "@faker-js/faker": "^9.9.0",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^17.0.1",
     "express": "^5.1.0",
+    "express-validator": "^7.2.1",
     "form-data": "^4.0.3",
+    "helmet": "^8.1.0",
+    "humps": "^2.0.1",
+    "jsonwebtoken": "^9.0.0",
     "mailgun.js": "^12.0.3",
+    "mongoose": "^8.18.0",
+    "multer": "^1.4.5-lts.2",
     "nodemailer": "^7.0.4",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "pino": "^8.14.0",
     "sanitize-html": "^2.17.0"
   },
   "devDependencies": {
+    "@types/chai-http": "^3.0.5",
+    "@types/mocha": "^10.0.10",
+    "chai": "^4.5.0",
+    "chai-http": "^4.4.0",
     "dotenv-cli": "^8.0.0",
-    "nodemon": "^3.1.10"
+    "mocha": "^10.8.2",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2"
   }
 }
